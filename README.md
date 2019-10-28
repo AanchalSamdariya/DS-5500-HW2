@@ -31,54 +31,59 @@ The visualization I chose to critique is easy to interpret the relationship betw
 #### Choose and fit one or more models to quantify the relationship betweem income (GDP per capita) and life expectancy over time. Justify your choice of model and comment on its appropriateness. (You are not required to handle the autocorrelation of time series, but should comment on how this impacts your analysis.) 
 #### Visualize the model(s) and comment on what they tell you about the relationship between income and life expectancy over time.
 
-These are the correlations between the different variables : gdp_per_capita, life_expectancy and time:
+To visualize the income and life expectancy over time, the mean of income was taken over time for all countries and the same was done with life expectancy. This aggregation would show the change in income and life expectancy over time.
+These are the correlations between the different variables : mean(gdp_per_capita), mean(life_expectancy) and time:
 
 ![Correlation between gdp_per_capita, life_expectancy, time](images/income_life_corr.png)
 
-There is no linear relationship between gdp_per_capita and time, but there is a slight positive correlation between life_expectancy and time. Nevertheless, gdp_per_capita and life_expectancy were fitted in a Linear Regression model to observe a baseline. This is shown in the figure below:
+There is no linear relationship between gdp_per_capita and time or between life_expectancy and time, but there is a slight positive correlation between them. Nevertheless, gdp_per_capita and life_expectancy were fitted in a Linear Regression model to observe a baseline. This is shown in the figure below:
 
 Regression of life_expectancy over gdp_per_capita (Baseline):
 ![](images/reg_income_life.png)
 
-The above baseline model gave an R-squared of just 0.336 which indicated that the model does not explain well the variability of the respone data around its mean. Since this relationship looks logarithmic, log transformation was done over gdp_per_capita. The regression plot of life_expectancy over log(gdp_per_capita) is shown below:
+The above baseline model was fitted as Y = B0*X + C where Y is the response variable (life_expectancy), B0 is the coffecient of X which is 0.0026, X is the dependent variable (gdp_per_capita), C is the Constant which is 30.5282.
+Therefore, the model is represented as: Y = 0.0026*X + 30.5282.
+This model gave an R-squared of 0.921 which indicates that the model explains well the variability of the respone data around its mean, but can do better. Since this relationship looks logarithmic, log transformation was done over gdp_per_capita. The regression plot of life_expectancy over log(gdp_per_capita) is shown below:
 
 Regression of life_expectancy over log(gdp_per_capita):
 ![](images/reg_ln_income_life.png)
 
-This shows a better fit of the model with a positive correlation between life_expectancy and log(gdp_per_capita). The relationship between life_expectancy and gdp_per_capita over time explains that as gdp_per_capita increases, the life_expectancy rate increases. This is an expected observation and is thus shown in the above results. With higher gdp, better health facilities can be provided to the citizens and in turn help increase their lifespan.
+The above model was fitted as Y = B0*X + C where B0 is 14.4227 and C is -71.4284.
+Therefore, the model is represented as: Y = 14.4227*log(X) + -71.4284
+This shows a better fit of the model with a high positive correlation between life_expectancy and log(gdp_per_capita) over time. The relationship between life_expectancy and gdp_per_capita over time explains that as gdp_per_capita increases with time, the life_expectancy rate also increases. This is an expected observation and is thus shown in the above results. With higher gdp, better health facilities can be provided to the citizens and in turn help increase their lifespan.
 The statistics of the regression model is shown below:
 
 ![](images/income_life_summary.png)
 
-The R-squared of the new model has increased to 0.681 which indicated that the model explains the variability of the response data around its mean better than previously. Further transormations might help fit the data better, but there are chance that it would also lead to overfitting.
+The R-squared of the new model has increased to 0.960 which indicated that the model explains the variability of the response data around its mean better than previously. Further transormations might help fit the data better, but there are chances that it would also lead to overfitting.
 
 ## Problem 5
 
 #### Choose and fit one or more models to quantify the relationship betweem income (GDP per capita) and child mortality over time. Justify your choice of model and comment on its appropriateness. (You are not required to handle the autocorrelation of time series, but should comment on how this impacts your analysis.) 
 #### Visualize the model(s) and comment on what they tell you about the relationship between income and child mortality over time.
 
-These are the correlations between the different variables : gdp_per_capita, child_mortality and time:
+To visualize the income and child mortality over time, the mean of income was taken over time for all countries and the same was done with child mortality. This aggregation would show the change in income and child mortality over time.
+These are the correlations between the different variables : mean(gdp_per_capita), mean(child_mortality) and time:
 
 ![Correlation between gdp_per_capita, child_mortality, time](images/income_mortality_corr.png)
 
-There is no linear relationship between gdp_per_capita and time, but there is a negative correlation between child_mortality and time. Nevertheless, gdp_per_capita and child_mortality were fitted in a Linear Regression model to observe a baseline. This is shown in the figure below:
+There is no linear relationship between gdp_per_capita and time or between child_mortality and time, but there is a correlation between them. Nevertheless, gdp_per_capita and child_mortality were fitted in a Linear Regression model to observe a baseline. This is shown in the figure below:
 
 Regression of child_mortality over gdp_per_capita (Baseline):
 ![](images/reg_income_mortality.png)
 
-The above baseline model gave an R-squared of just 0.264 which indicates that the model does not explain well the variability of the respone data around its mean. Since this relationship looks logarithmic, log transformation was done over gdp_per_capita. The regression plot of child_mortality over log(gdp_per_capita) is shown below:
+The above baseline model was fitted as Y = B0*X + C where Y is the response variable (child_mortality), B0 is the coffecient of X which is -0.0244, X is the dependent variable (gdp_per_capita), C is the Constant which is 408.2029.
+Therefore, the model is represented as: Y = -0.0244*X + 408.2029.
+This model gave an R-squared of 0.889 which indicates that the model explains well the variability of the respone data around its mean, but can be improved. The plot shows a negative correlation between income and child mortality rate upto income of 12500 after which the child mortality rate remains almost constant at 0. As the above plot shows a relationship that looks logarithmic, log transformation was applied over gdp_per_capita. The regression plot of child_mortality over log(gdp_per_capita) is shown below:
 
 Regression of child_mortality over log(gdp_per_capita):
 ![](images/reg_ln_income_mortality.png)
 
-The above plot does not display a very distinct correlation between the variables and requires further transformation. Therefore, log(child_mortality) was also taken to observe a better relationship between the variables.
-
-Regression of log(child_mortality) over log(gdp_per_capita):
-![](images/reg_ln_income_ln_mortality.png)
-
-This shows a better fit of the model with a negative correlation between log(child_mortality) and log(gdp_per_capita). The statistics of the regression model is shown below:
+The above model was fitted as Y = B0*X + C where B0 is -139.6825 and C is 1399.1926.
+Therefore, the model is represented as: Y = -139.6825*log(X) + 1399.1926.
+This shows a better fit of the model with a negative linear correlation between child_mortality and log(gdp_per_capita). The statistics of the regression model is shown below:
 
 ![](images/income_mortality_summary.png)
 
-The R-squared of the new model has increased to 0.708 which indicates a better representation of the model. 
-The relationship between child mortality and gdp_per_capita over time explains that as gdp_per_capita increases, the child death rate reduces. This is an expected observation and is thus shown in the above results. With high gdp_per_capita, the government can provide better care and facilities for children which would help in healthy lifestyles and low death rates.
+The R-squared of the new model has increased to 0.983 which indicates a much better representation of the model. 
+The relationship between child mortality and gdp_per_capita over time explains that as gdp_per_capita increases with time, the child death rate reduces. This is an expected observation and is thus shown in the above results. With high gdp_per_capita, the government can provide better care and facilities for children which would help in healthy lifestyles and low death rates.
